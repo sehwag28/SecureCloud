@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Secure Cloud Storage - Auth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- ✅ Working Font Awesome 6.6.0 CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="visual">
+          <div class="brand">
+            <div class="logo">
+              <img
+                src="images/cloud_logo.jpg"
+                alt="Secure Cloud Storage Logo"
+              />
+            </div>
+
+            <div>
+              <h2>Encrypta</h2>
+              <div class="lead">Secure Cloud Storage</div>
+            </div>
+          </div>
+          <div class="big-title">
+            Secure Cloud Storage - Login to access your encrypted files 🔐
+          </div>
+          <div class="chips">
+            <div class="chip">Encrypted</div>
+            <div class="chip">Two-step ready</div>
+            <div class="chip">GDPR-friendly</div>
+          </div>
+          <footer>
+            Built with care • Use a professional email for sign up
+          </footer>
+        </div>
+
+        <div class="forms-wrap">
+          <div class="tabs">
+            <button class="tab active" id="tab-login">Login</button>
+            <button class="tab" id="tab-register">Register</button>
+          </div>
+
+          <!-- LOGIN -->
+          <div id="login-box">
+            <form id="login-form" novalidate>
+              <label for="login-email">Email</label>
+              <div class="input-row">
+                <input
+                  id="login-email"
+                  type="email"
+                  placeholder="you@company.com"
+                  required
+                />
+              </div>
+
+              <label for="login-password">Password</label>
+              <div class="input-row">
+                <input
+                  id="login-password"
+                  type="password"
+                  placeholder="Your password"
+                  required
+                  minlength="6"
+                />
+                <span class="eye" id="login-eye">👁️</span>
+              </div>
+
+              <div class="row" style="justify-content: space-between">
+                <div class="muted remember-me">
+                  <input id="remember" type="checkbox" />
+                  <label for="remember">Remember me</label>
+                </div>
+
+                <button
+                  type="button"
+                  class="muted"
+                  id="forgot-link"
+                  style="background-color: #00000000; color: #fff"
+                >
+                  Forgot password?
+                </button>
+              </div>
+
+              <div class="row" style="gap: 10px; margin-top: 10px">
+                <button class="btn primary" id="login-btn" type="submit">
+                  Login
+                </button>
+                <button type="button" class="btn ghost" id="to-register">
+                  Create account
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- REGISTER -->
+          <div id="register-box" style="display: none">
+            <form id="register-form" novalidate>
+              <label for="reg-username">Username</label>
+              <input
+                id="reg-username"
+                type="text"
+                placeholder="Display name"
+                required
+              />
+
+              <label for="reg-email">Email</label>
+              <input
+                id="reg-email"
+                type="email"
+                placeholder="you@company.com"
+                required
+              />
+
+              <label for="reg-phone">Phone number</label>
+              <input
+                id="reg-phone"
+                type="tel"
+                placeholder="e.g. +94123456789 or 0712345678"
+                required
+              />
+
+              <label for="reg-password">Password</label>
+              <div class="input-row">
+                <input
+                  id="reg-password"
+                  type="password"
+                  placeholder="At least 6 characters"
+                  required
+                  minlength="6"
+                />
+                <span class="eye" id="reg-eye">👁️</span>
+              </div>
+
+              <label for="reg-password-confirm">Confirm password</label>
+              <div class="input-row">
+                <input
+                  id="reg-password-confirm"
+                  type="password"
+                  placeholder="Repeat password"
+                  required
+                />
+                <span class="eye" id="reg-confirm-eye">👁️</span>
+              </div>
+
+              <div class="row" style="gap: 10px; margin-top: 10px">
+                <button class="btn primary" id="register-btn" type="submit">
+                  Register
+                </button>
+                <button type="button" class="btn ghost" id="to-login">
+                  Back to login
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Forgot password -->
+          <div id="forgot-box" style="display: none; margin-top: 12px">
+            <form id="forgot-form">
+              <label for="forgot-email">
+                Enter your registered email to reset password
+              </label>
+              <input id="forgot-email" type="email" required />
+              <div style="display: flex; gap: 10px; margin-top: 8px">
+                <button class="btn primary" id="forgot-btn" type="submit">
+                  Send reset link
+                </button>
+                <button type="button" class="btn ghost" id="forgot-cancel">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🌐 Professional Footer -->
+    <footer class="main-footer">
+      <div class="footer-content">
+        <h3>Encrypta – Your Trusted Cloud Vault ☁️</h3>
+        <p>
+          Encrypta offers military-grade encryption for your files, ensuring
+          privacy, reliability, and secure access from anywhere in the world.
+        </p>
+
+        <div class="social-icons">
+          <a href="#" target="_blank"
+            ><i class="fa-brands fa-facebook-f"></i
+          ></a>
+          <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" target="_blank"
+            ><i class="fa-brands fa-linkedin-in"></i
+          ></a>
+          <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+
+        <p class="copyright">
+          © 2025 Encrypta. All rights reserved. Designed by
+          <strong>Sehwag</strong>.
+        </p>
+      </div>
+    </footer>
+
+    <div id="toast-container"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
