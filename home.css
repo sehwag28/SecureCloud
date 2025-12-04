@@ -3,7 +3,7 @@
     /* deep */
     --bg2: #021a32;
     /* navy */
-    --card: rgba(255, 255, 255, 0.04);
+    --card: rgba(11, 11, 11, 0.4);
     --accent-from: #6ee7b7;
     /* mint */
     --accent-to: #3b82f6;
@@ -71,7 +71,7 @@ body {
     background: var(--card);
     border-radius: 16px;
     padding: 40px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 80px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
 }
 
@@ -265,4 +265,30 @@ footer {
     height: 70px;
     border-radius: 8px;
     object-fit: contain;
+}
+
+
+/* --- FULL SCREEN BACKGROUND IMAGE --- */
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("images/2D7GXNJ.jpg");
+    /* Change to your image */
+    background-size: cover;
+    /* Perfect fit */
+    background-position: center;
+    /* Always centered */
+    background-repeat: no-repeat;
+    /* No repeat */
+    background-attachment: fixed;
+    /* Smooth static background */
+    z-index: -1;
+    /* Keep it behind everything */
+    opacity: 0.40;
+    /* Adjust darkness (0.1–1.0) */
 }

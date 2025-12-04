@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure File Download</title>
+    <!-- Poppins Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --bg1: #0a192f;
+        --bg2: #021a32;
+        --card: #13273e;
+        /* Solid popup */
+        --navbar: #0f2236;
+        --footer: #0f2236;
+        --accent-from: #52d1ff;
+        --accent-to: #76ff9f;
+        --text: #e6eef8;
+        --danger: #ff5757;
+        --success: #4caf50;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, var(--bg1), var(--bg2));
+        color: var(--text);
+        min-height: 100vh;
+        padding: 20px;
+      }
+      /* Background Image Overlay */
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("images/2D7GXNJ.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        opacity: 0.55;
+        z-index: -1;
+      }
+      /* NAVBAR */
+
+      .navbar {
+        width: 100%;
+        background: var(--navbar);
+        color: var(--text);
+        padding: 15px 40px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+        margin-bottom: 40px;
+      }
+
+      .navbar .logo img {
+        height: 45px;
+        border-radius: 8px;
+      }
+
+      .navbar h2 {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      .signupBtn {
+        background: linear-gradient(
+          90deg,
+          var(--accent-from),
+          var(--accent-to)
+        );
+        padding: 10px 18px;
+        border: none;
+        border-radius: 8px;
+        color: #04263d;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .signupBtn:hover {
+        filter: brightness(1.1);
+        transform: translateY(-2px);
+      }
+      /* DOWNLOAD BOX */
+
+      .download-container {
+        background: var(--card);
+        padding: 40px;
+        border-radius: 18px;
+        width: 100%;
+        max-width: 480px;
+        text-align: center;
+        margin: 0 auto;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      h1 {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--accent-to);
+        margin-bottom: 8px;
+      }
+
+      .filename {
+        color: var(--accent-from);
+        font-size: 18px;
+        margin-bottom: 28px;
+        font-weight: 600;
+      }
+
+      .lock-icon {
+        font-size: 60px;
+        color: var(--accent-from);
+        margin-bottom: 20px;
+      }
+
+      input[type="password"] {
+        width: 100%;
+        padding: 15px;
+        border-radius: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        background: #0f1f33;
+        color: var(--text);
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      input[type="password"]:focus {
+        border-color: var(--accent-from);
+        outline: none;
+      }
+
+      .download-btn {
+        width: 100%;
+        padding: 15px;
+        margin-top: 10px;
+        background: linear-gradient(
+          90deg,
+          var(--accent-from),
+          var(--accent-to)
+        );
+        border: none;
+        border-radius: 10px;
+        color: #04263d;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .download-btn:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.09);
+      }
+
+      .error-msg,
+      .success-msg {
+        margin-top: 15px;
+        font-weight: 500;
+        display: none;
+      }
+
+      .error-msg {
+        color: var(--danger);
+      }
+
+      .success-msg {
+        color: var(--success);
+      }
+
+      .info {
+        margin-top: 20px;
+        font-size: 14px;
+        color: rgba(230, 238, 248, 0.7);
+      }
+      /* FOOTER */
+
+      .main-footer {
+        margin-top: 60px;
+        padding: 40px 20px;
+        background: var(--footer);
+        text-align: center;
+        color: var(--text);
+        border-radius: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .footer-content h3 {
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: var(--accent-to);
+      }
+
+      .footer-content p {
+        color: rgba(230, 238, 248, 0.7);
+        font-size: 14px;
+        max-width: 700px;
+        margin: 0 auto 20px;
+      }
+
+      .social-icons a {
+        margin: 0 8px;
+        font-size: 18px;
+        color: var(--accent-from);
+        transition: 0.3s;
+      }
+
+      .social-icons a:hover {
+        color: var(--accent-to);
+      }
+
+      .copyright {
+        margin-top: 20px;
+        font-size: 13px;
+        color: rgba(230, 238, 248, 0.5);
+      }
+
+      .info {
+        color: #666;
+        margin-top: 20px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="images/cloud_logo.jpg" alt="Secure Cloud Storage Logo" />
+      </div>
+      <h2>Encrypta - Secure Cloud Storage</h2>
+      <button id="signupBtn" class="signupBtn">Register</button>
+    </nav>
+
+    <!-- DOWNLOAD SECTION -->
+    <div class="download-container">
+      <div class="lock-icon">🔒</div>
+      <h1>Protected File</h1>
+      <p class="filename" id="filename">Loading...</p>
+      <div class="input-group">
+        <input
+          type="password"
+          id="passwordInput"
+          placeholder="Enter password to download"
+          autocomplete="off"
+        />
+      </div>
+      <button class="download-btn" id="downloadBtn">Download File</button>
+      <p class="error-msg" id="errorMsg">❌ Incorrect password!</p>
+      <p class="success-msg" id="successMsg">✅ Downloading file...</p>
+      <p class="info">
+        Enter the password shared with you to access this file.
+      </p>
+    </div>
+    <script>
+      document.getElementById("signupBtn").addEventListener("click", () => {
+        window.location.href = "index.html"; // your login page
+      });
+      // Get data from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const encodedData = urlParams.get("data");
+
+      if (!encodedData) {
+        alert("❌ Invalid download link!");
+        document.querySelector(".download-container").innerHTML =
+          "<h1>Invalid Link</h1><p>This download link is not valid.</p>";
+      } else {
+        try {
+          // Decode the share data
+          const shareData = JSON.parse(atob(encodedData));
+          document.getElementById("filename").textContent = shareData.filename;
+
+          // Handle download button click
+          document
+            .getElementById("downloadBtn")
+            .addEventListener("click", async () => {
+              const enteredPassword =
+                document.getElementById("passwordInput").value;
+              const errorMsg = document.getElementById("errorMsg");
+              const successMsg = document.getElementById("successMsg");
+
+              // Hide previous messages
+              errorMsg.style.display = "none";
+              successMsg.style.display = "none";
+
+              // Check password
+              if (enteredPassword === shareData.password) {
+                // Password correct - download file
+                successMsg.style.display = "block";
+
+                try {
+                  // Try direct download first
+                  const link = document.createElement("a");
+                  link.href = shareData.url;
+                  link.download = shareData.filename;
+                  link.target = "_blank";
+                  link.rel = "noopener noreferrer";
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+
+                  // Show success after a short delay
+                  setTimeout(() => {
+                    successMsg.textContent = "✅ File download started!";
+                  }, 500);
+                } catch (err) {
+                  console.error("Download error:", err);
+                  errorMsg.textContent = "❌ Failed to download file!";
+                  errorMsg.style.display = "block";
+                  successMsg.style.display = "none";
+                }
+              } else {
+                // Wrong password
+                errorMsg.style.display = "block";
+                document.getElementById("passwordInput").value = "";
+                document.getElementById("passwordInput").focus();
+              }
+            });
+
+          // Allow Enter key to trigger download
+          document
+            .getElementById("passwordInput")
+            .addEventListener("keypress", (e) => {
+              if (e.key === "Enter") {
+                document.getElementById("downloadBtn").click();
+              }
+            });
+        } catch (err) {
+          alert("❌ Invalid download link format!");
+          document.querySelector(".download-container").innerHTML =
+            "<h1>Invalid Link</h1><p>This download link is corrupted.</p>";
+        }
+      }
+    </script>
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="footer-content">
+        <h3>Encrypta – Your Trusted Cloud Vault ☁️</h3>
+        <p>
+          Encrypta offers military-grade encryption to secure your files,
+          ensuring privacy, reliability, and safe access from anywhere.
+        </p>
+        <div class="social-icons">
+          <a href="#" target="_blank"
+            ><i class="fa-brands fa-facebook-f"></i
+          ></a>
+          <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" target="_blank"
+            ><i class="fa-brands fa-linkedin-in"></i
+          ></a>
+          <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+
+        <p class="copyright">
+          © 2025 Encrypta. All rights reserved. Designed by
+          <strong>Sehwag Ramakrishnan</strong>.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
