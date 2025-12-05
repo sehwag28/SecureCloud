@@ -1,4 +1,4 @@
-# Secure Cloud-Based File Storage Platform
+# ENCRYPTA - Secure Cloud-Based File Storage Platform
 
 ## Project Overview
 This project focuses on creating a secure cloud-based file storage platform that ensures **confidentiality, integrity, and availability** of digital data. The system protects sensitive user information on cloud servers by combining robust **encryption protocols** and **access control mechanisms**. Users can securely store, upload, and share files without worrying about unauthorized access or data alteration. 
